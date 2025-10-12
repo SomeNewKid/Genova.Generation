@@ -1,7 +1,6 @@
 // This file is part of the Genova project licensed under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
-using System.Collections.Generic;
 using System.Text.Json;
 using Genova.Generation.Models;
 
@@ -48,9 +47,9 @@ internal sealed class OpenAiTextHelper : OpenAiBaseHelper<OpenAiTextRequest, Ope
     }
 
     /// <inheritdoc/>
-    protected override Dictionary<string, object> BuildPayload(OpenAiTextRequest request)
+    protected override Dictionary<string, object?> BuildPayload(OpenAiTextRequest request)
     {
-        return new Dictionary<string, object>
+        return new Dictionary<string, object?>
         {
             ["model"] = request.Model ?? string.Empty,
             ["messages"] = new[]

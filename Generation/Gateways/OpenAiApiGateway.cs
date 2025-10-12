@@ -4,7 +4,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Genova.Common.Attributes;
-using Genova.Generation;
 using Genova.Generation.Models;
 using Genova.Generation.Utilities;
 
@@ -14,13 +13,13 @@ namespace Genova.Generation.Gateways;
 /// Provides functionality to interact with the OpenAI API.
 /// </summary>
 [CodeQuality(Public = true, Justification = "Intended for use by modules and websites.")]
+[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "Conflicting naming rules.")]
 [ExcludeFromCodeCoverage(Justification = "This class is a gateway to an external API and does not require unit tests.")]
 public sealed class OpenAiApiGateway : IOpenAiApiGateway
 {
-    [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "Conflicting naming rules.")]
-    private static readonly string ChatEndpoint = "https://api.openai.com/v1/chat/completions";
-    [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "Conflicting naming rules.")]
-    private static readonly string ImageEndpoint = "https://api.openai.com/v1/images/generations";
+    private const string ChatEndpoint = "https://api.openai.com/v1/chat/completions";
+    private const string ImageEndpoint = "https://api.openai.com/v1/images/generations";
+    private const string ModerationsEndpoint = "https://api.openai.com/v1/moderations";
     private readonly HttpClient _httpClient;
 
     /// <summary>
@@ -56,5 +55,17 @@ public sealed class OpenAiApiGateway : IOpenAiApiGateway
         StringContent content = new(requestBody, Encoding.UTF8, "application/json");
         HttpResponseMessage response = await _httpClient.PostAsync(ImageEndpoint, content);
         return await openAiImageHelper.Deserialize(response);
+    }
+
+    /// <inheritdoc/>
+    public async Task<OpenAiModerationResponse> GetModerationResponseAsync(OpenAiModerationRequest request)
+    {
+        ArgumentNullException.ThrowIfNull(request);
+
+        OpenAiModerationHelper helper = new();
+        string requestBody = helper.Serialize(request);
+        StringContent content = new(requestBody, Encoding.UTF8, "application/json");
+        HttpResponseMessage response = await _httpClient.PostAsync(ModerationsEndpoint, content);
+        return await helper.Deserialize(response);
     }
 }

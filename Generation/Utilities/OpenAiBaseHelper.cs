@@ -254,7 +254,7 @@ internal abstract class OpenAiBaseHelper<TRequest, TResponse>
     /// </summary>
     /// <param name="request">The request object.</param>
     /// <returns>A dictionary representing the payload.</returns>
-    protected abstract Dictionary<string, object> BuildPayload(TRequest request);
+    protected abstract Dictionary<string, object?> BuildPayload(TRequest request);
 
     /// <summary>
     /// Creates an error response object with the specified error message.

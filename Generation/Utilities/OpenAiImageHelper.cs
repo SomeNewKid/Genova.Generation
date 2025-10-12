@@ -134,9 +134,9 @@ internal sealed class OpenAiImageHelper : OpenAiBaseHelper<OpenAiImageRequest, O
     }
 
     /// <inheritdoc/>
-    protected override Dictionary<string, object> BuildPayload(OpenAiImageRequest request)
+    protected override Dictionary<string, object?> BuildPayload(OpenAiImageRequest request)
     {
-        return new Dictionary<string, object>
+        return new Dictionary<string, object?>
         {
             ["model"] = request.Model ?? string.Empty,
             ["prompt"] = request.Prompt,
