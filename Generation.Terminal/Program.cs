@@ -63,15 +63,14 @@ internal class Program
     }
 
     /// <summary>
-    /// Retrieves the OpenAI API key from the environment variable <c>OPENAI_A11YGEN_API_KEY</c>.
+    /// Retrieves the OpenAI API key from the environment variable <c>openai-genova-api-key</c>.
     /// Throws an exception if the key is not set.
     /// </summary>
     /// <returns>The OpenAI API key as a string.</returns>
-    /// <exception cref="InvalidOperationException">Thrown if the API key is not set in the environment variables.</exception>
     [ExcludeFromCodeCoverage(Justification = "Not possible to test the exception.")]
     private static string GetOpenAiApiKey()
     {
-        string? apiKey = Environment.GetEnvironmentVariable("OPENAI_A11YGEN_API_KEY");
+        string? apiKey = Environment.GetEnvironmentVariable(GenerationModule.OpenAiApiKeyEnvironmentVaraible);
         if (string.IsNullOrEmpty(apiKey))
         {
             throw new InvalidOperationException("API key is not set in the environment variables.");

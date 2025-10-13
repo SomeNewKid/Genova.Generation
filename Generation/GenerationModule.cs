@@ -15,6 +15,17 @@ namespace Genova.Generation;
 public sealed class GenerationModule : IModule
 {
     /// <summary>
+    /// The environment variable name for the OpenAI API key.
+    /// </summary>
+    // <notes>
+    // 1. Reequirements of an environment name for a Ubuntu-based container:
+    //    A value must consist of lower case alphanumeric characters, '-',
+    //    and must start and end with an alphanumeric character.
+    //    The length must not be more than 253 characters.
+    // </notes>
+    public const string OpenAiApiKeyEnvironmentVaraible = "openai-genova-api-key";
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="GenerationModule"/> class.
     /// </summary>
     public GenerationModule()
