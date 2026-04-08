@@ -63,7 +63,7 @@ internal class Program
     }
 
     /// <summary>
-    /// Retrieves the OpenAI API key from the environment variable <c>openai-genova-api-key</c>.
+    /// Retrieves the OpenAI API key from the environment variable <c>OPENAI_API_KEY</c>.
     /// Throws an exception if the key is not set.
     /// </summary>
     /// <returns>The OpenAI API key as a string.</returns>

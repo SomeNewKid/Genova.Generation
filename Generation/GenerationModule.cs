@@ -23,7 +23,7 @@ public sealed class GenerationModule : IModule
     //    and must start and end with an alphanumeric character.
     //    The length must not be more than 253 characters.
     // </notes>
-    public const string OpenAiApiKeyEnvironmentVaraible = "openai-genova-api-key";
+    public const string OpenAiApiKeyEnvironmentVaraible = "OPENAI_API_KEY";
 
     /// <summary>
     /// Initializes a new instance of the <see cref="GenerationModule"/> class.
