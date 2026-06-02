@@ -118,7 +118,7 @@ internal abstract class OpenAiBaseHelper<TRequest, TResponse>
     /// <returns>A JSON string representing the request.</returns>
     internal string Serialize(TRequest request)
     {
-        Dictionary<string, object> payload = BuildPayload(request);
+        Dictionary<string, object?> payload = BuildPayload(request);
         return JsonSerializer.Serialize(payload);
     }
 
